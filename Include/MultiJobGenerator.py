@@ -176,7 +176,8 @@ class JobGenerator:
                     list_file = os.listdir(ntupleDirPath)
                     for fileName in list_file:
                         if ".root" in fileName:
-                            self.list_file.append( fileName )
+                            ntuplePath = "%s/%s" % (ntupleDirPath, fileName)
+                            self.list_file.append( ntuplePath )
 
                 break
 
