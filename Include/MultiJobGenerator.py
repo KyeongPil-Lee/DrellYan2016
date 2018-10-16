@@ -69,7 +69,7 @@ class MultiJobGenerator:
         f_script.write("#!/bin/bash\n")
 
         for sampleType in self.dic_nJob.keys():
-            cmd = "source %s/hadd_all.sh" % sampleType
+            cmd = "source %s/%s/hadd_all.sh" % (self.WSPath, sampleType)
             f_script.write(cmd+"\n")
 
         f_script.close()
