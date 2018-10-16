@@ -1,0 +1,122 @@
+{
+  "Sample": [
+  {
+    "tag": "DYMuMu_M10to50_NLOXSec",
+    "isMC": 1,
+    "xSec": 6270.0,
+    "sumWeight": 33278866.0,
+    "comment": "Cross section is from XSDB: 18810.0 / 3",
+    "list_dir": ["v2.3/DYLL_M10to50_ext1v1", "v2.3/DYLL_M10to50_v1", "v2.3/DYLL_M10to50_v2"]
+  },
+
+  {
+    "tag": "DYMuMu_M15to50",
+    "isMC": 1,
+    "xSec": 2384.97,
+    "sumWeight": 1.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
+    "list_dir": ["v2.3/DYLL_M10to50_ext1v1", "v2.3/DYLL_M10to50_v1", "v2.3/DYLL_M10to50_v2"]
+  },
+
+  {
+    "tag": "DYMuMu_M50toInf",
+    "isMC": 1,
+    "xSec": 2034.66666,
+    "sumWeight": 27257791.0,
+    "comment": "x-section = 6104/3",
+    "list_dir": ["v2.3/DYLL_M50toInf"]
+  },
+
+  {
+    "tag": "DYMuMu_M50to100",
+    "isMC": 1,
+    "xSec": 1923.26,
+    "sumWeight": 26175605.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
+    "list_dir": ["v2.3/DYLL_M50toInf"]
+  },
+
+  {
+    "tag": "DYMuMu_M100to200",
+    "isMC": 1,
+    "xSec": 78.1258,
+    "sumWeight": 3433295.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
+    "list_dir": ["v2.3/DYLL_M100to200", "v2.3/DYLL_M100to200_ext"]
+  },
+
+  {
+    "tag": "DYMuMu_M200to400",
+    "isMC": 1,
+    "xSec": 2.73309,
+    "sumWeight": 56340.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
+    "list_dir": ["v2.3/DYLL_M200to400"]
+  },
+
+  {
+    "tag": "DYMuMu_M400to500",
+    "isMC": 1,
+    "xSec": 0.142945,
+    "sumWeight": 50136.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
+    "list_dir": ["v2.3/DYLL_M400to500"]
+  },
+
+  {
+    "tag": "DYMuMu_M500to700",
+    "isMC": 1,
+    "xSec": 0.0809755,
+    "sumWeight": 48188.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
+    "list_dir": ["v2.3/DYLL_M500to700"]
+  },
+
+  {
+    "tag": "DYMuMu_M700to800",
+    "isMC": 1,
+    "xSec": 0.0125589,
+    "sumWeight": 44984.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
+    "list_dir": ["v2.3/DYLL_M700to800"]
+  },
+
+  {
+    "tag": "DYMuMu_M800to1000",
+    "isMC": 1,
+    "xSec": 0.0106867,
+    "sumWeight": 43496.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1 -> need to be updated with NNPDF3.1+luxqed",
+    "list_dir": ["v2.3/DYLL_M800to1000"]
+  },
+
+  {
+    "tag": "DYMuMu_M1000to1500",
+    "isMC": 1,
+    "xSec": 0.00556507,
+    "sumWeight": 40110.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
+    "list_dir": ["v2.3/DYLL_M1000to1500"]
+  },
+
+  {
+    "tag": "DYMuMu_M1500to2000",
+    "isMC": 1,
+    "xSec": 0.000730495,
+    "sumWeight": 37176.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
+    "list_dir": ["v2.3/DYLL_M1500to2000"]
+  },
+
+  {
+    "tag": "DYMuMu_M2000to3000",
+    "isMC": 1,
+    "xSec": 0.00016844,
+    "sumWeight": 33360.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
+    "list_dir": ["v2.3/DYLL_M2000to3000"]
+  }
+
+]
+
+}

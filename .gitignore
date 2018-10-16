@@ -1,6 +1,9 @@
 # local files
 Local/
 
+# PDF
+*.pdf
+
 # python
 *.pyc
 
