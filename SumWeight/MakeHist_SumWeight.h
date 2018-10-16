@@ -1,3 +1,23 @@
+#include <TChain.h>
+#include <TFile.h>
+#include <TH1D.h>
+#include <TH2D.h>
+#include <TLorentzVector.h>
+#include <TStopwatch.h>
+#include <TTimeStamp.h>
+#include <TString.h>
+#include <TLegend.h>
+#include <THStack.h>
+#include <TPad.h>
+#include <TCanvas.h>
+#include <TColor.h>
+#include <TAttMarker.h>
+#include <TF1.h>
+#include <TStyle.h>
+#include <TEfficiency.h>
+
+#include <vector>
+
 #include <Include/DYTool.h>
 
 class HistProducer: public DrellYan::ClassTemplate
