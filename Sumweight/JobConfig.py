@@ -2,7 +2,7 @@ from Include.MultiJobGenerator import *
 
 generator = MultiJobGenerator()
 
-generator.jobName = "sumWeight_DYLL_M15to50" # -- used for workspace name
+generator.jobName = "sumWeight" # -- used for workspace name
 generator.classCodePath = "SumWeight/MakeHist_SumWeight.h"
 generator.className = "HistProducer"
 
@@ -11,7 +11,7 @@ generator.jsonName = "SampleInfo_v2p3.json" # -- under DY_ANALYZER_PATH/Include
 
 generator.dic_nJob = { 
   "DYMuMu_M15to50": 10,
-  "DYMuMu_M15to50": 10
+  "DYEE_M15to50": 10
   }
 
 generator.outputPath = "/scratch/kplee/DYJob"
