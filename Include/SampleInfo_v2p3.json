@@ -84,9 +84,9 @@
   {
     "tag": "DYMuMu_M800to1000",
     "isMC": 1,
-    "xSec": 0.0106867,
+    "xSec": 0.0105845,
     "sumWeight": 43496.0,
-    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1 -> need to be updated with NNPDF3.1+luxqed",
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
     "list_dir": ["v2.3/DYLL_M800to1000"]
   },
 
