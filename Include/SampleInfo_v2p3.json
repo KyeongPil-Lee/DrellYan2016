@@ -13,7 +13,7 @@
     "tag": "DYMuMu_M15to50",
     "isMC": 1,
     "xSec": 2384.97,
-    "sumWeight": 1.0,
+    "sumWeight": 12334681.0,
     "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
     "list_dir": ["v2.3/DYLL_M10to50_ext1v1", "v2.3/DYLL_M10to50_v1", "v2.3/DYLL_M10to50_v2"]
   },
@@ -121,7 +121,7 @@
     "tag": "DYEE_M15to50",
     "isMC": 1,
     "xSec": 2384.97,
-    "sumWeight": 1.0,
+    "sumWeight": 12333745.0,
     "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
     "list_dir": ["v2.3/DYLL_M10to50_ext1v1", "v2.3/DYLL_M10to50_v1", "v2.3/DYLL_M10to50_v2"]
   }
