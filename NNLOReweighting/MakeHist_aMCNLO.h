@@ -138,16 +138,19 @@ private:
   void SelectDiPtRapBinEdge()
   {
     // -- dilepton pT bin edge
-    if(minM_ == 1000 and maxM_ == 3000)
-    {
-      nDiPtBin_ = DYReweight::nDiPtBin2;
-      MakeArrayAndCopy(DYReweight::nDiPtBin2, DYReweight::arr_diPtBinEdge2, arr_diPtBinEdge_);
-    }
-    else
-    {
-      nDiPtBin_ = DYReweight::nDiPtBin;
-      MakeArrayAndCopy(DYReweight::nDiPtBin, DYReweight::arr_diPtBinEdge, arr_diPtBinEdge_);
-    }
+    // if(minM_ == 1000 and maxM_ == 3000)
+    // {
+    //   nDiPtBin_ = DYReweight::nDiPtBin2;
+    //   MakeArrayAndCopy(DYReweight::nDiPtBin2, DYReweight::arr_diPtBinEdge2, arr_diPtBinEdge_);
+    // }
+    // else
+    // {
+    //   nDiPtBin_ = DYReweight::nDiPtBin;
+    //   MakeArrayAndCopy(DYReweight::nDiPtBin, DYReweight::arr_diPtBinEdge, arr_diPtBinEdge_);
+    // }
+    // -- use smae pT binning for all cases
+    nDiPtBin_ = DYReweight::nDiPtBin2;
+    MakeArrayAndCopy(DYReweight::nDiPtBin2, DYReweight::arr_diPtBinEdge2, arr_diPtBinEdge_);
 
     // -- dilepton rapidity bin edge
     nDiRapBin_ = DYReweight::nDiRapBin;
