@@ -265,7 +265,8 @@ public:
       Double_t genWeight;
       ntuple->genEvent_weight < 0 ? genWeight = -1 : genWeight = 1;
 
-      Double_t totWeight = sampleInfo_.normFactor * genWeight;
+      // Double_t totWeight = sampleInfo_.normFactor * genWeight;
+      Double_t totWeight = genWeight;
 
       // // -- only DY->mumu or DY->ee events according to its name -- //
       if( DrellYan::SelectGenEventBySampleType(sampleInfo_.type, ntuple) )
