@@ -119,7 +119,7 @@ private:
 
   void SelectDiPtRapBinEdge()
   {
-    -- dilepton pT bin edge
+    // -- dilepton pT bin edge
     if(minM_ == 1000 and maxM_ == 3000)
     {
       nDiPtBin_ = DYReweight::nDiPtBin2;

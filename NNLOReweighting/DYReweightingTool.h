@@ -1,3 +1,5 @@
+#include <Include/SimplePlotTools.h>
+
 namespace DYReweight
 {
 const Int_t nMassBin = 4;
