@@ -80,6 +80,7 @@ private:
 
       TString histName = TString::Format("h_diPt_%s_Y%.1lfto%.1lf", massBinInfo_.Data(), minY, maxY);
       TH1D* h_temp = new TH1D(histName, "", nDiPtBin_, arr_diPtBinEdge_);
+      h_temp->Sumw2();
 
       vec_hist_.push_back( h_temp );
     }
