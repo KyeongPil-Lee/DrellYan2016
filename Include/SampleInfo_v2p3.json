@@ -10,6 +10,24 @@
   },
 
   {
+    "tag": "DYMuMu_M10to50",
+    "isMC": 1,
+    "xSec": 35090.3,
+    "sumWeight": 33278866.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED (WARNING: PDF error is 57657.3 pb (164%)!!)",
+    "list_dir": ["v2.3/DYLL_M10to50_ext1v1", "v2.3/DYLL_M10to50_v1", "v2.3/DYLL_M10to50_v2"]
+  },
+
+  {
+    "tag": "DYMuMu_M14p5to50",
+    "isMC": 1,
+    "xSec": 2756.99,
+    "sumWeight": 1.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
+    "list_dir": ["v2.3/DYLL_M10to50_ext1v1", "v2.3/DYLL_M10to50_v1", "v2.3/DYLL_M10to50_v2"]
+  },
+
+  {
     "tag": "DYMuMu_M15to50",
     "isMC": 1,
     "xSec": 2384.97,
@@ -115,6 +133,24 @@
     "sumWeight": 33360.0,
     "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
     "list_dir": ["v2.3/DYLL_M2000to3000"]
+  },
+
+  {
+    "tag": "DYEE_M10to50",
+    "isMC": 1,
+    "xSec": 35090.3,
+    "sumWeight": 1.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED (WARNING: PDF error is 57657.3 pb (164%)!!)",
+    "list_dir": ["v2.3/DYLL_M10to50_ext1v1", "v2.3/DYLL_M10to50_v1", "v2.3/DYLL_M10to50_v2"]
+  },
+
+  {
+    "tag": "DYEE_M14p5to50",
+    "isMC": 1,
+    "xSec": 2756.99,
+    "sumWeight": 1.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
+    "list_dir": ["v2.3/DYLL_M10to50_ext1v1", "v2.3/DYLL_M10to50_v1", "v2.3/DYLL_M10to50_v2"]
   },
 
   {

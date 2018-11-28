@@ -555,8 +555,8 @@ class HistCanvas : public CanvasBase
 public:
   vector<HistInfo> histInfos_;
 
-  Double_t nRebin_;
-  Bool_t setRebin_;
+  Double_t nRebin_ = 0;
+  Bool_t setRebin_ = kFALSE;
 
   HistCanvas()
   {
@@ -1002,8 +1002,8 @@ public:
 class DataMCStackCanvaswRatio: public CanvasBase
 {
 public:
-  Double_t nRebin_;
-  Bool_t setRebin_;
+  Double_t nRebin_ = 0;
+  Bool_t setRebin_ = kFALSE;
 
   HistInfo histInfoData_;
   vector<HistInfo> histInfosMC_; 

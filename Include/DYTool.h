@@ -54,6 +54,10 @@ Bool_t SelectGenEventBySampleType(TString type, NtupleHandle *ntuple)
       {
         if( dileptonM < 400 ) flag = kTRUE;
       }
+      else if( type.Contains("_M14p5to50") )
+      {
+        if( dileptonM > 14.5 && dileptonM < 50 ) flag = kTRUE;
+      }
       else if( type.Contains("_M15to50") )
       {
         if( dileptonM > 15 && dileptonM < 50 ) flag = kTRUE;
@@ -174,6 +178,67 @@ void AddNtupleToChain(TChain* chain, TString textFileName)
   cout << "==================================" << endl;
 }
 
+vector<Muon> GetAllMuons(NtupleHandle *ntuple)
+{
+  vector<Muon> vec_muon;
+  for(Int_t i_mu=0; i_mu<ntuple->nMuon; i_mu++)
+  {
+    Muon mu(ntuple, i_mu);
+    vec_muon.push_back( mu );
+  }
+
+  return vec_muon;
+}
+
+vector<MuonPair> GetAllMuonPairs(NtupleHandle *ntuple)
+{
+  vector<MuonPair> vec_muonPair;
+
+  vector<Muon> vec_muon = DrellYan::GetAllMuons(ntuple);
+
+  for(Int_t i_mu=0; i_mu<ntuple->nMuon; i_mu++)
+  {
+    Muon mu1 = vec_muon[i_mu];
+    for(Int_t j_mu=i_mu+1; j_mu<ntuple->nMuon; j_mu++) // -- iterate from i_mu+1 to avoid duplications
+    {
+      Muon mu2 = vec_muon[j_mu];
+
+      MuonPair muonPair(mu1, mu2, ntuple);
+      vec_muonPair.push_back( muonPair );
+    }
+  }
+
+  return vec_muonPair;
+}
+
+Bool_t CompareMuonPair_SmallerVtxChi2( MuonPair pair1, MuonPair pair2 )
+{
+  // -- the pair with "smallest" vertex chi2 will be the first element -- //
+  return pair1.normVtxChi2_inner < pair2.normVtxChi2_inner; 
+}
+
+MuonPair EventSelection_MuonChannel(NtupleHandle *ntuple)
+{
+  vector<MuonPair> vec_muonPair = DrellYan::GetAllMuonPairs(ntuple);
+
+  vector<MuonPair> vec_goodMuonPair;
+  for(auto& pair : vec_muonPair )
+  {
+    if( pair.IsDYCandidate(ntuple) )
+      vec_goodMuonPair.push_back( pair );
+  }
+
+  if( (Int_t)(vec_goodMuonPair.size()) == 0 )
+  {
+    MuonPair muonPair_dummy; // -- isDummy = kTRUE
+    return muonPair_dummy;
+  }
+  else
+  {
+    std::sort(vec_goodMuonPair.begin(), vec_goodMuonPair.end(), DrellYan::CompareMuonPair_SmallerVtxChi2);
+    return vec_goodMuonPair[0]; // -- pair with smallest vertex chi2 value
+  }
+}
 
 static inline void loadBar(int x, int n, int r, int w)
 {
