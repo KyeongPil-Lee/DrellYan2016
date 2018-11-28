@@ -17,37 +17,41 @@
 #include <TEfficiency.h>
 
 #include <vector>
-
 #include <Include/DYTool.h>
-#include <NNLOReweighting/DYReweightingTool.h>
 
-class PtRapHistContainer
+class DiPtRapHistContainer
 {
 public:
   // -- min/max mass: to select appropriate pt/rapidity bin
   Double_t minM_;
   Double_t maxM_;
-  TString massBinInfo_;
+  vector<Double_t> vec_diPtBinEdge_;
+  vector<Double_t> vec_diRapBinEdge_;
 
-  // -- dilepton pt & rapidity bins: assigned according to minM and maxM
   Int_t nDiPtBin_;
-  Double_t* arr_diPtBinEdge_;
-
   Int_t nDiRapBin_;
-  Double_t* arr_diRapBinEdge_;
 
+  TString massBinInfo_;
   vector<TH1D*> vec_hist_;
 
-  PtRapHistContainer( Double_t minM, Double_t maxM )
+  DiPtRapHistContainer(Double_t minM, Double_t maxM, 
+                       vector<Double_t> vec_diPtBinEdge, 
+                       vector<Double_t> vec_diRapBinEdge)
   {
     minM_ = minM;
     maxM_ = maxM;
     massBinInfo_ = TString::Format("M%.0lfto%.0lf", minM, maxM);
 
+    vec_diPtBinEdge_  = vec_diPtBinEdge;
+    nDiPtBin_ = (Int_t)vec_diPtBinEdge_.size() - 1;
+
+    vec_diRapBinEdge_ = vec_diRapBinEdge;
+    nDiRapBin_ = (Int_t)vec_diRapBinEdge_.size() - 1;
+
     Init();
   }
 
-  void Fill(GenPair& genPair, Double_t weight)
+  void Fill(DrellYan::GenPair& genPair, Double_t weight)
   {
     Int_t rapBin = FindRapidityBin( genPair.absRap );
     // printf("[GenPair rapidity: %lf -> bin = %d]\n", genPair.absRap, rapBin);
@@ -71,12 +75,15 @@ public:
 private:
   void Init()
   {
-    SelectDiPtRapBinEdge();
+    // -- make array with dilepton pT bin edges to use it for making histogram
+    Double_t *arr_diPtBinEdge_ = new Double_t[nDiPtBin_+1];
+    for(Int_t i_pt=0; i_pt<nDiPtBin_+1; i_pt++)
+      arr_diPtBinEdge_[i_pt] = vec_diPtBinEdge_[i_pt];
 
-    for(Int_t i_rap=0; i_rap<DYReweight::nDiRapBin; i_rap++)
+    for(Int_t i_rap=0; i_rap<nDiRapBin_; i_rap++)
     {
-      Double_t minY = arr_diRapBinEdge_[i_rap];
-      Double_t maxY = arr_diRapBinEdge_[i_rap+1];
+      Double_t minY = vec_diRapBinEdge_[i_rap];
+      Double_t maxY = vec_diRapBinEdge_[i_rap+1];
 
       TString histName = TString::Format("h_diPt_%s_Y%.1lfto%.1lf", massBinInfo_.Data(), minY, maxY);
       TH1D* h_temp = new TH1D(histName, "", nDiPtBin_, arr_diPtBinEdge_);
@@ -84,6 +91,8 @@ private:
 
       vec_hist_.push_back( h_temp );
     }
+
+    delete[] arr_diPtBinEdge_;
   }
 
   Int_t FindRapidityBin( Double_t absRapidity )
@@ -93,17 +102,17 @@ private:
     if( absRapidity < 0 )
       printf("[PtRapHistContainer::FindRapidityBin] absRapidity = %lf < 0\n", absRapidity);
 
-    if( absRapidity > arr_diRapBinEdge_[nDiRapBin_] )
+    if( absRapidity > vec_diRapBinEdge_[nDiRapBin_] )
     {
       printf("[PtRapHistContainer::FindRapidityBin]\n");
-      printf("  Rapidity = %lf is larger than the last bin edge (%lf): binIndex = -1 is returned\n", absRapidity, arr_diRapBinEdge_[nDiRapBin_]);
+      printf("  Rapidity = %lf is larger than the last bin edge (%lf): binIndex = -1 is returned\n", absRapidity, vec_diRapBinEdge_[nDiRapBin_]);
       return binIndex;
     }
 
     for(Int_t i_rap=0; i_rap<nDiRapBin_; i_rap++)
     {
-      Double_t minY = arr_diRapBinEdge_[i_rap];
-      Double_t maxY = arr_diRapBinEdge_[i_rap+1];
+      Double_t minY = vec_diRapBinEdge_[i_rap];
+      Double_t maxY = vec_diRapBinEdge_[i_rap+1];
 
       if( absRapidity > minY && absRapidity < maxY )
       {
@@ -117,53 +126,33 @@ private:
 
     return binIndex;
   }
-
-  void SelectDiPtRapBinEdge()
-  {
-    // -- dilepton pT bin edge
-    if(minM_ == 1000 and maxM_ == 3000)
-    {
-      nDiPtBin_ = DYReweight::nDiPtBin2;
-      MakeArrayAndCopy(DYReweight::nDiPtBin2, DYReweight::arr_diPtBinEdge2, arr_diPtBinEdge_);
-    }
-    else
-    {
-      nDiPtBin_ = DYReweight::nDiPtBin;
-      MakeArrayAndCopy(DYReweight::nDiPtBin, DYReweight::arr_diPtBinEdge, arr_diPtBinEdge_);
-    }
-    
-    // -- dilepton rapidity bin edge
-    nDiRapBin_ = DYReweight::nDiRapBin;
-    MakeArrayAndCopy(DYReweight::nDiRapBin, DYReweight::arr_diRapBinEdge, arr_diRapBinEdge_);
-
-    // for(Int_t i_rap=0; i_rap<nDiRapBin_+1; i_rap++)
-    // {
-    //   printf("[%02d array component] rapidity bin edge = %lf\n", i_rap, arr_diRapBinEdge_[i_rap]);
-    // }
-    // printf("\n");
-
-  }
-
-  void MakeArrayAndCopy(Int_t nBin, Double_t* arr_original, Double_t*& arr_target)
-  {
-    arr_target = new Double_t[nBin+1]; // -- # bin edge = nBin + 1
-    for(Int_t i=0; i<nBin+1; i++)
-      arr_target[i] = arr_original[i];
-  }
 };
 
-// -- contains all histograms
+
 class HistContainer
 {
 public:
-  vector< PtRapHistContainer* > vec_ptRapHist_;
+  Int_t nMassBin_;
+  vector<Double_t> vec_massBinEdge_;
+  vector<Double_t> vec_diPtBinEdge_;
+  vector<Double_t> vec_diRapBinEdge_;
 
-  HistContainer()
+  vector<DiPtRapHistContainer*> vec_diPtRapHist_;
+
+  HistContainer(vector<Double_t> vec_massBinEdge, 
+                vector<Double_t> vec_diPtBinEdge, 
+                vector<Double_t> vec_diRapBinEdge)
   {
+    vec_massBinEdge_  = vec_massBinEdge;
+    nMassBin_ = (Int_t)vec_massBinEdge_.size()-1;
+
+    vec_diPtBinEdge_  = vec_diPtBinEdge;
+    vec_diRapBinEdge_ = vec_diRapBinEdge;
+
     Init();
   }
 
-  void Fill(GenPair& genPair, Double_t weight )
+  void Fill(DrellYan::GenPair& genPair, Double_t weight )
   {
     Int_t massBin = FindMassBin( genPair.mass );
     // printf("[GenPair mass: %lf -> bin = %d]\n", genPair.mass, massBin);
@@ -174,24 +163,25 @@ public:
       return;
     }
 
-    vec_ptRapHist_[massBin]->Fill( genPair, weight );
+    vec_diPtRapHist_[massBin]->Fill( genPair, weight );
   }
 
   void Save(TFile *f_output)
   {
-    for(const auto& ptRapHist : vec_ptRapHist_ )
-      ptRapHist->Save(f_output);
+    for(const auto& diPtRapHist : vec_diPtRapHist_ )
+      diPtRapHist->Save(f_output);
   }
+
 private:
   void Init()
   {
-    for(Int_t i=0; i<DYReweight::nMassBin; i++)
+    for(Int_t i_mass=0; i_mass<nMassBin_; i_mass++)
     {
-      Double_t minM = DYReweight::arr_massBinEdge[i];
-      Double_t maxM = DYReweight::arr_massBinEdge[i+1];
+      Double_t minM = vec_massBinEdge_[i_mass];
+      Double_t maxM = vec_massBinEdge_[i_mass+1];
 
-      PtRapHistContainer *ptRapHist_temp = new PtRapHistContainer(minM, maxM);
-      vec_ptRapHist_.push_back( ptRapHist_temp );
+      DiPtRapHistContainer* diPtRapHist_temp = new DiPtRapHistContainer(minM, maxM, vec_diPtBinEdge_, vec_diRapBinEdge_);
+      vec_diPtRapHist_.push_back( diPtRapHist_temp );
     }
   }
 
@@ -199,17 +189,17 @@ private:
   {
     Int_t binIndex = -1;
 
-    if( mass > DYReweight::arr_massBinEdge[DYReweight::nMassBin] )
+    if( mass > vec_massBinEdge_[nMassBin_] )
     {
       printf("[HistContainer::FindMassBin]\n");
       printf("  mass = %lf is larger than the last bin edge: binIndex = -1 is returned\n", mass);
       return binIndex;
     }
 
-    for(Int_t i_mass=0; i_mass<DYReweight::nMassBin; i_mass++)
+    for(Int_t i_mass=0; i_mass<nMassBin_; i_mass++)
     {
-      Double_t minM = DYReweight::arr_massBinEdge[i_mass];
-      Double_t maxM = DYReweight::arr_massBinEdge[i_mass+1];
+      Double_t minM = vec_massBinEdge_[i_mass];
+      Double_t maxM = vec_massBinEdge_[i_mass+1];
 
       if( mass > minM && mass < maxM )
       {
@@ -250,9 +240,39 @@ public:
     NtupleHandle *ntuple = new NtupleHandle( chain );
     ntuple->TurnOnBranches_GenLepton();
 
-
     // -- histogram initialization
-    HistContainer* hists = new HistContainer();
+    vector<Double_t> vec_massBinEdge_belowZPeak = {15, 20, 30, 45, 60};
+    vector<Double_t> vec_diPtBinEdge_belowZPeak = {0, 20, 25, 30, 100, 1000};
+    vector<Double_t> vec_diRapBinEdge_belowZPeak = {0, 1.5, 2.4, 100};
+    HistContainer* hist_belowZPeak 
+      = new HistContainer(vec_massBinEdge_belowZPeak, 
+                          vec_diPtBinEdge_belowZPeak, 
+                          vec_diRapBinEdge_belowZPeak);
+
+    vector<Double_t> vec_massBinEdge_ZPeak = {60, 72, 106, 120};
+    vector<Double_t> vec_diPtBinEdge_ZPeak = {0, 10, 15, 20, 25, 30, 50, 70, 90, 1000};
+    vector<Double_t> vec_diRapBinEdge_ZPeak = {0, 1.2, 1.8, 2.4, 100};
+    HistContainer* hist_ZPeak 
+      = new HistContainer(vec_massBinEdge_ZPeak, 
+                          vec_diPtBinEdge_ZPeak, 
+                          vec_diRapBinEdge_ZPeak);
+
+    vector<Double_t> vec_massBinEdge_aboveZPeak = {120, 133, 150, 171, 200, 400, 510, 600, 1000};
+    vector<Double_t> vec_diPtBinEdge_aboveZPeak = {0, 10, 15, 20, 25, 30, 40, 60, 80, 1000};
+    vector<Double_t> vec_diRapBinEdge_aboveZPeak = {0, 0.9, 1.5, 2.4, 100};
+    HistContainer* hist_aboveZPeak 
+      = new HistContainer(vec_massBinEdge_aboveZPeak, 
+                          vec_diPtBinEdge_aboveZPeak, 
+                          vec_diRapBinEdge_aboveZPeak);
+
+    vector<Double_t> vec_massBinEdge_highMass = {1000, 3000};
+    vector<Double_t> vec_diPtBinEdge_highMass = {0, 20, 30, 100, 1000};
+    vector<Double_t> vec_diRapBinEdge_highMass = {0, 0.9, 1.5, 100};
+    HistContainer* hist_highMass 
+      = new HistContainer(vec_massBinEdge_highMass, 
+                          vec_diPtBinEdge_highMass, 
+                          vec_diRapBinEdge_highMass);
+
 
     Int_t nEvent = chain->GetEntries();
     cout << "\t[Total Events: " << nEvent << "]" << endl;
@@ -271,10 +291,10 @@ public:
       // // -- only DY->mumu or DY->ee events according to its name -- //
       if( DrellYan::SelectGenEventBySampleType(sampleInfo_.type, ntuple) )
       {
-        vector< GenLepton > vec_GenLeptonHP;
+        vector< DrellYan::GenLepton > vec_GenLeptonHP;
         for(Int_t i_gen=0; i_gen<ntuple->nGenLepton; i_gen++)
         {
-          GenLepton genLepton( ntuple, i_gen );
+          DrellYan::GenLepton genLepton( ntuple, i_gen );
 
           if( fabs(genLepton.ID) == 13 && genLepton.isHardProcess )
             vec_GenLeptonHP.push_back( genLepton );
@@ -286,15 +306,22 @@ public:
           cout << "   Something wrong ... need to check" << endl;
         }
 
-        GenPair genPairHP(vec_GenLeptonHP[0], vec_GenLeptonHP[1]);
-        hists->Fill( genPairHP, totWeight );
+        DrellYan::GenPair genPairHP(vec_GenLeptonHP[0], vec_GenLeptonHP[1]);
+        Double_t diMass = genPairHP.mass;
+        if( diMass < 60 )                         hist_belowZPeak->Fill( genPairHP, totWeight );
+        else if( 60   < diMass && diMass < 120 )  hist_ZPeak->Fill( genPairHP, totWeight );
+        else if( 120  < diMass && diMass < 1000 ) hist_aboveZPeak->Fill( genPairHP, totWeight );
+        else if( 1000 < diMass && diMass < 3000 ) hist_highMass->Fill( genPairHP, totWeight );
       }
     }
 
     TString outputName = TString::Format("ROOTFile_aMCNLO_DiPtRap_%s.root", sampleInfo_.type.Data());
     TFile *f_output = TFile::Open(outputName, "RECREATE");
 
-    hists->Save( f_output );
+    hist_belowZPeak->Save( f_output );
+    hist_ZPeak->Save( f_output );
+    hist_aboveZPeak->Save( f_output );
+    hist_highMass->Save( f_output );
 
     f_output->Close();
   }
