@@ -340,9 +340,10 @@ void Run()
         f_script.write('echo "[%s] hadd is finished"\n' % self.sampleType)
 
         if self.bringOutput:
-            cmd_cp = "cp %s %s" (mergedFileName, os.getcwd())
+            CWD = os.getcwd()
+            cmd_cp = "cp %s %s" (mergedFileName, CWD)
             f_script.write(cmd_cp+"\n")
-            f_script.write('echo "copy: %s -> %s"' % (mergedFileName, os.getcwd()))
+            f_script.write( 'echo "copy: %s -> %s"' % (mergedFileName, CWD) )
             f_script.write("\n")
 
         f_script.close()
