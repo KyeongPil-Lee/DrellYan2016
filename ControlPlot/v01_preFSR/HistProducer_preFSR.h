@@ -47,25 +47,25 @@ public:
 
   void Fill(DrellYan::GenPair& genPair, Double_t weight )
   {
-    h_diM_->Fill( genPair.mass );
-    h_diPt_->Fill( genPair.pt );
-    h_diRap_->Fill( genPair.rap );
-    h_diAbsRap_->Fill( genPair.absRap );
+    h_diM_->Fill( genPair.mass, weight );
+    h_diPt_->Fill( genPair.pt, weight );
+    h_diRap_->Fill( genPair.rap, weight );
+    h_diAbsRap_->Fill( genPair.absRap, weight );
 
-    h_pt_->Fill( genPair.first_.pt );
-    h_pt_->Fill( genPair.second_.pt );
-    h_pt_lead_->Fill( genPair.first_.pt );
-    h_pt_sub_->Fill( genPair.second_.pt );
+    h_pt_->Fill( genPair.first_.pt, weight );
+    h_pt_->Fill( genPair.second_.pt, weight );
+    h_pt_lead_->Fill( genPair.first_.pt, weight );
+    h_pt_sub_->Fill( genPair.second_.pt, weight );
 
-    h_eta_->Fill( genPair.first_.eta );
-    h_eta_->Fill( genPair.second_.eta );
-    h_eta_lead_->Fill( genPair.first_.eta );
-    h_eta_sub_->Fill( genPair.second_.eta );
+    h_eta_->Fill( genPair.first_.eta, weight );
+    h_eta_->Fill( genPair.second_.eta, weight );
+    h_eta_lead_->Fill( genPair.first_.eta, weight );
+    h_eta_sub_->Fill( genPair.second_.eta, weight );
 
-    h_phi_->Fill( genPair.first_.phi );
-    h_phi_->Fill( genPair.second_.phi );
-    h_phi_lead_->Fill( genPair.first_.phi );
-    h_phi_sub_->Fill( genPair.second_.phi );
+    h_phi_->Fill( genPair.first_.phi, weight );
+    h_phi_->Fill( genPair.second_.phi, weight );
+    h_phi_lead_->Fill( genPair.first_.phi, weight );
+    h_phi_sub_->Fill( genPair.second_.phi, weight );
   }
 
   void Save(TFile *f_output)
