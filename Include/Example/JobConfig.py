@@ -27,5 +27,6 @@ generator.dic_nJob = {
   }
 
 generator.outputPath = "/scratch/kplee/DYJob"
+generator.bringOutput = True # -- bring output root file to the current working directory where JobConfig is executed
 
 generator.Generate()
