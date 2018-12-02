@@ -18,7 +18,7 @@ if [ $HOSTNAME == "tamsa2.snu.ac.kr" ]; then
 elif [ $HOSTNAME == "muon" ]; then
   DY_NTUPLE_PATH="/scratch/kplee/DYntuple"
 
-elif [ $HOSTNAME == "macbook-kplee.dyndns.cern.ch" ]; then
+elif [ $USER == "KyeongPil_Lee" ]; then
   DY_NTUPLE_PATH="/Users/KyeongPil_Lee/temp/DYntuple"
 
 fi
