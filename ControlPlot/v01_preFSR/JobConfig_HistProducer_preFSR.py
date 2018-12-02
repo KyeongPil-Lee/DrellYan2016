@@ -6,7 +6,7 @@ from Include.MultiJobGenerator import *
 generator = MultiJobGenerator()
 
 generator.jobName = "HistProducer_preFSR" # -- used for workspace name
-generator.classCodePath = "ControlPlot/HistProducer_preFSR.h"
+generator.classCodePath = "ControlPlot/v01_preFSR/HistProducer_preFSR.h"
 generator.className = "HistProducer"
 
 generator.luminosity = 35863.818
