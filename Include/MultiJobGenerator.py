@@ -12,6 +12,9 @@ class MultiJobGenerator:
         self.outputPath = ""
         self.dic_nJob = {} # -- nJob for each sample type
 
+        # -- if it is true, then the output root file after hadd is copied to the current directory (where job configuration is executed)
+        self.bringOutput = False
+
         # -- internal variable
         self.WSPath = ""
 
@@ -33,6 +36,7 @@ class MultiJobGenerator:
 
             jobGenerator.sampleType = sampleType
             jobGenerator.nJob = self.dic_nJob[sampleType]
+            jobGenerator.bringOutput = self.bringOutput
 
             jobGenerator.Generate()
 
@@ -132,6 +136,9 @@ class JobGenerator:
         self.luminosity = -1
         self.nJob = -1
         self.outputPath = ""
+
+        # -- if it is true, then the output root file after hadd is copied to the current directory (where job configuration is executed)
+        self.bringOutput = False
 
         # -- internal variables
         self.ntuplePathBase = os.getenv("DY_NTUPLE_PATH")
@@ -313,7 +320,10 @@ void Run()
     def GenerateHADDScript(self):
         scriptPath = "%s/hadd_all.sh" % self.WSPath
         f_script = open(scriptPath, "w")
-        f_script.write("hadd %s/ROOTFile_%s.root \\\n" % (self.WSPath, self.sampleType))
+
+        classCodeName = self.classCodePath.split("/")[-1].split(".h")[0]
+        mergedFileName = "ROOTFile_%s_%s.root" % (classCodeName, self.sampleType)
+        f_script.write("hadd %s/%s \\\n" % (self.WSPath, mergedFileName))
 
         for i in range(0, self.nJob):
             dirName = "Job_v%03d" % i
@@ -328,6 +338,13 @@ void Run()
 
         f_script.write("\n")
         f_script.write('echo "[%s] hadd is finished"\n' % self.sampleType)
+
+        if self.bringOutput:
+            cmd_cp = "cp %s %s" (mergedFileName, os.getcwd())
+            f_script.write(cmd_cp+"\n")
+            f_script.write('echo "copy: %s -> %s"' % (mergedFileName, os.getcwd()))
+            f_script.write("\n")
+
         f_script.close()
 
     def CheckOptions(self):
