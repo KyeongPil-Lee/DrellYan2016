@@ -341,7 +341,7 @@ void Run()
 
         if self.bringOutput:
             CWD = os.getcwd()
-            cmd_cp = "cp %s %s" (mergedFileName, CWD)
+            cmd_cp = "cp %s %s" % (mergedFileName, CWD)
             f_script.write(cmd_cp+"\n")
             f_script.write( 'echo "copy: %s -> %s"' % (mergedFileName, CWD) )
             f_script.write("\n")
