@@ -155,6 +155,17 @@ public:
       printf("[ClassTemplate::CheckSampleInfo] sampleInfo_.normFactor is not assigned\n");
   }
 
+  void PrintSampleInfo()
+  {
+    cout << "[ClassTemplate::CheckSampleInfo]" << endl;
+    cout << "  sampleInfo_.type =           " << sampleInfo_.type << endl;
+    cout << "  sampleInfo_.ntuplePathFile = " << sampleInfo_.ntuplePathFile << endl;
+    cout << "  sampleInfo_.xSec =           " << sampleInfo_.xSec << endl;
+    cout << "  sampleInfo_.sumWeight =      " << sampleInfo_.sumWeight << endl;
+    cout << "  sampleInfo_.normFactor =     " << sampleInfo_.normFactor << endl;
+    cout << endl;
+  }
+
   void StartTimer()
   {
     timer_.Start();

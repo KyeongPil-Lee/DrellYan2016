@@ -94,6 +94,9 @@ private:
     h_phi_      = new TH1D("h_phi",      "", 80, -4, 4); vec_hist_.push_back( h_phi_ );
     h_phi_lead_ = new TH1D("h_phi_lead", "", 80, -4, 4); vec_hist_.push_back( h_phi_lead_ );
     h_phi_sub_  = new TH1D("h_phi_sub",  "", 80, -4, 4); vec_hist_.push_back( h_phi_sub_ );
+
+    for(const auto& h : vec_hist_ )
+      h->Sumw2();
   }
 
 };
@@ -109,6 +112,7 @@ public:
   void Run()
   {
     CheckSampleInfo();
+    PrintSampleInfo();
     StartTimer();
 
     TChain *chain = new TChain("recoTree/DYTree");
