@@ -124,6 +124,7 @@ class ClassTemplate
 {
 public:
   DrellYan::SampleInfo sampleInfo_;
+  TStopwatch timer_;
 
   ClassTemplate()
   {
@@ -153,6 +154,24 @@ public:
     if( sampleInfo_.normFactor == 0 )
       printf("[ClassTemplate::CheckSampleInfo] sampleInfo_.normFactor is not assigned\n");
   }
+
+  void StartTimer()
+  {
+    timer_.Start();
+  }
+
+  void PrintRunTime()
+  {
+    Double_t cpuTime = timer_.CpuTime();
+    Double_t realTime = timer_.RealTime();
+
+    cout << "************************************************" << endl;
+    cout << "Total real time: " << realTime << " (seconds)" << endl;
+    cout << "Total CPU time:  " << cpuTime << " (seconds)" << endl;
+    cout << "  CPU time / real time = " << cpuTime / realTime << endl;
+    cout << "************************************************" << endl;
+  }
+
 };
 
 void AddNtupleToChain(TChain* chain, TString textFileName)
