@@ -31,6 +31,8 @@ public:
   void Run()
   {
     CheckSampleInfo();
+    PrintSampleInfo();
+    StartTimer();
 
     TStopwatch totaltime;
     totaltime.Start();
@@ -73,5 +75,7 @@ public:
     TFile *f_output = TFile::Open(outputName, "RECREATE");
     h_sumWeight->Write();
     f_output->Close();
+
+    PrintRunTime();
   }
 };
