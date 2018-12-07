@@ -13,7 +13,14 @@ generator.luminosity = 35863.818
 generator.jsonName = "SampleInfo_v2p3.json" # -- under DY_ANALYZER_PATH/Include
 
 generator.dic_nJob = { 
-  "SingleMuon_Run2016B": 10,
+  "SingleMuon_Run2016B": 3,
+  "SingleMuon_Run2016C": 3,
+  "SingleMuon_Run2016D": 3,
+  "SingleMuon_Run2016E": 3,
+  "SingleMuon_Run2016F": 3,
+  "SingleMuon_Run2016G": 6,
+  "SingleMuon_Run2016Hver2": 6,
+  "SingleMuon_Run2016Hver3": 2,
    }
 
 generator.outputPath = "/scratch/kplee/DYJob"
