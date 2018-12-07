@@ -304,7 +304,7 @@ void Run()
 
   producer->sampleInfo_.type = "{sampleType_}";
   producer->sampleInfo_.ntuplePathFile = "{ntupleListName_}";
-  producer->sampleInfo_.isMC = "{isMCStr_}";  
+  producer->sampleInfo_.isMC = {isMCStr_};  
   producer->sampleInfo_.xSec = {xSec_};
   producer->sampleInfo_.sumWeight = {sumWeight_};
   Double_t lumi = {luminosity_};
