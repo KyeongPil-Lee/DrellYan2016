@@ -287,7 +287,7 @@ cd {workingDir_}
         normFactorStr = ""
         if self.isMC:
             normFactorStr = "( lumi * {xSec_} ) / {sumWeight_}".format(xSec_=self.xSec, sumWeight_=self.sumWeight)
-        else
+        else:
             normFactorStr = "1.0"
 
         str_codes = \
