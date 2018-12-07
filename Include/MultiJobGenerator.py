@@ -309,6 +309,7 @@ void Run()
         
         # -- data: normFactor = 1.0
         if not self.isMC:
+            print "is not MC!!"
             str_codes.replace("producer->sampleInfo_.normFactor", "\\\\ producer->sampleInfo_.normFactor")
             str_codes.replace("producer->Run();", "producer->sampleInfo_.normFactor = 1.0;\n  producer->Run();")
 
