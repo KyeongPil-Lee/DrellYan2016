@@ -286,7 +286,7 @@ cd {workingDir_}
     def GenerateROOTCode(self, ntupleListName, path):
         rootCodePath = "%s/Run.cxx" % path
         f_cxx = open(rootCodePath, "w")
-        f_cxx.write(
+        str_codes = \
 """#include <{classCodePath_}>
 
 void Run()
@@ -306,7 +306,13 @@ void Run()
 """.format(classCodePath_=self.classCodePath, className_=self.className,
            sampleType_=self.sampleType, ntupleListName_=ntupleListName,
            xSec_=self.xSec, sumWeight_=self.sumWeight, luminosity_=self.luminosity)
-        )
+        
+        # -- data: normFactor = 1.0
+        if not self.isMC:
+            str_codes.replace("producer->sampleInfo_.normFactor", "\\\\ producer->sampleInfo_.normFactor")
+            str_codes.replace("producer->Run();", "producer->sampleInfo_.normFactor = 1.0;\n  producer->Run();")
+
+        f_cxx.write(str_codes)
 
         f_cxx.close()
 
