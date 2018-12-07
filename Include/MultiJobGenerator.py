@@ -284,8 +284,12 @@ cd {workingDir_}
         f_script.close()
 
     def GenerateROOTCode(self, ntupleListName, path):
-        rootCodePath = "%s/Run.cxx" % path
-        f_cxx = open(rootCodePath, "w")
+        normFactorStr = ""
+        if self.isMC:
+            normFactorStr = "( lumi * {xSec_} ) / {sumWeight_}".format(xSec_=self.xSec, sumWeight_=self.sumWeight)
+        else
+            normFactorStr = "1.0"
+
         str_codes = \
 """#include <{classCodePath_}>
 
@@ -298,23 +302,18 @@ void Run()
   producer->sampleInfo_.xSec = {xSec_};
   producer->sampleInfo_.sumWeight = {sumWeight_};
   Double_t lumi = {luminosity_};
-  producer->sampleInfo_.normFactor = (lumi * {xSec_} ) / {sumWeight_};
+  producer->sampleInfo_.normFactor = {normFactorStr_};
 
   producer->Run();
 }}
 
 """.format(classCodePath_=self.classCodePath, className_=self.className,
            sampleType_=self.sampleType, ntupleListName_=ntupleListName,
-           xSec_=self.xSec, sumWeight_=self.sumWeight, luminosity_=self.luminosity)
-        
-        # -- data: normFactor = 1.0
-        if not self.isMC:
-            print "is not MC!!"
-            str_codes.replace("producer->sampleInfo_.normFactor", "\\\\ producer->sampleInfo_.normFactor")
-            str_codes.replace("producer->Run();", "producer->sampleInfo_.normFactor = 1.0;\n  producer->Run();")
+           xSec_=self.xSec, sumWeight_=self.sumWeight, luminosity_=self.luminosity, normFactorStr_=normFactorStr)
 
+        rootCodePath = "%s/Run.cxx" % path
+        f_cxx = open(rootCodePath, "w")
         f_cxx.write(str_codes)
-
         f_cxx.close()
 
 
