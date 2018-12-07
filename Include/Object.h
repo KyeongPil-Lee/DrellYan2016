@@ -346,6 +346,7 @@ public:
   Double_t best_pz;
   Double_t best_eta;
   Double_t best_phi;
+  Double_t best_relPtError;
 
   Double_t inner_pt;
   Double_t inner_ptError;
@@ -459,6 +460,7 @@ public:
     best_px      = ntuple->muon_best_px[index];
     best_py      = ntuple->muon_best_py[index];
     best_pz      = ntuple->muon_best_pz[index];
+    best_relPtError = best_ptError / best_pt;
 
     inner_pt      = ntuple->muon_inner_pt[index];
     inner_ptError = ntuple->muon_inner_ptError[index];
@@ -511,7 +513,7 @@ public:
     if( isGLB &&
         nMuonHit > 0 &&
         nMatchedStation > 1 &&
-        (best_ptError / best_pt) < 0.3 &&
+        best_relPtError < 0.3 &&
         fabs(dxyVTX) < 0.2 && 
         nPixelHit > 0 &&
         nTrackerLayer > 5 )
@@ -567,6 +569,7 @@ private:
     best_pz = -999;
     best_eta = -999;
     best_phi = -999;
+    best_relPtError = -999;
 
     inner_pt = -999;
     inner_ptError = -999;
