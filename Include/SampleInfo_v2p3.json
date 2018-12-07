@@ -160,6 +160,70 @@
     "sumWeight": 12333745.0,
     "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
     "list_dir": ["v2.3/DYLL_M10to50_ext1v1", "v2.3/DYLL_M10to50_v1", "v2.3/DYLL_M10to50_v2"]
+  },
+
+
+  {
+    "tag": "WJets",
+    "isMC": 1,
+    "xSec": 61526.7,
+    "sumWeight": 1.0,
+    "comment": "NNLO cross section",
+    "list_dir": ["v2.3/WJetsToLNu_amcatnlo_ext"]
+  },
+
+  {
+    "tag": "ttbar",
+    "isMC": 1,
+    "xSec": 831.76,
+    "sumWeight": 1.0,
+    "comment": "NNLO cross section",
+    "list_dir": ["v2.3/ttbar", "v2.3/ttbarBackup"]
+  },
+
+  {
+    "tag": "tW",
+    "isMC": 1,
+    "xSec": 35.85,
+    "sumWeight": 1.0,
+    "comment": "NNLO cross section",
+    "list_dir": ["v2.3/ST_tW"]
+  },
+
+  {
+    "tag": "tbarW",
+    "isMC": 1,
+    "xSec": 35.85,
+    "sumWeight": 1.0,
+    "comment": "NNLO cross section",
+    "list_dir": ["v2.3/ST_tbarW"]
+  },
+
+  {
+    "tag": "WW",
+    "isMC": 1,
+    "xSec": 118.7,
+    "sumWeight": 1.0,
+    "comment": "NNLO cross section",
+    "list_dir": ["v2.3/WW"]
+  },
+
+  {
+    "tag": "WZ",
+    "isMC": 1,
+    "xSec": 47.13,
+    "sumWeight": 1.0,
+    "comment": "NNLO cross section",
+    "list_dir": ["v2.3/WZ"]
+  },
+
+  {
+    "tag": "ZZ",
+    "isMC": 1,
+    "xSec": 16.523,
+    "sumWeight": 1.0,
+    "comment": "NNLO cross section",
+    "list_dir": ["v2.3/ZZ"]
   }
 
 ]
