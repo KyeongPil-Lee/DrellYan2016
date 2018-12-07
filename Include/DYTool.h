@@ -115,6 +115,7 @@ struct SampleInfo
 {
   TString type;
   TString ntuplePathFile;
+  Bool_t isMC;
   Double_t xSec;
   Double_t sumWeight;
   Double_t normFactor;
@@ -130,6 +131,7 @@ public:
   {
     sampleInfo_.type = "";
     sampleInfo_.ntuplePathFile = "";
+    sampleInfo_.isMC = kFALSE;
     sampleInfo_.xSec = 0;
     sampleInfo_.sumWeight = 0;
     sampleInfo_.normFactor = 0;
@@ -160,6 +162,7 @@ public:
     cout << "[ClassTemplate::CheckSampleInfo]" << endl;
     cout << "  sampleInfo_.type =           " << sampleInfo_.type << endl;
     cout << "  sampleInfo_.ntuplePathFile = " << sampleInfo_.ntuplePathFile << endl;
+    cout << "  sampleInfo_.isMC =           " << sampleInfo_.isMC << endl;
     cout << "  sampleInfo_.xSec =           " << sampleInfo_.xSec << endl;
     cout << "  sampleInfo_.sumWeight =      " << sampleInfo_.sumWeight << endl;
     cout << "  sampleInfo_.normFactor =     " << sampleInfo_.normFactor << endl;

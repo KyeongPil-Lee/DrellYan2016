@@ -189,8 +189,8 @@ public:
 
     NtupleHandle *ntuple = new NtupleHandle( chain );
     ntuple->TurnOnBranches_EventInfo();
-    ntuple->TurnOnBranches_GenLepton();
     ntuple->TurnOnBranches_Muon();
+    if( sampleInfo_.isMC ) ntuple->TurnOnBranches_GenLepton();
 
     Int_t nEvent = chain->GetEntries();
     cout << "\t[Total Events: " << nEvent << "]" << endl;

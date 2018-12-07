@@ -188,6 +188,8 @@ class JobGenerator:
 
                 break
 
+        self.list_file.sort()
+
         if not isFound:
             print "No corresponding information to %s in %s" % (self.sampleType, self.jsonName)
             sys.exit()
@@ -284,10 +286,13 @@ cd {workingDir_}
         f_script.close()
 
     def GenerateROOTCode(self, ntupleListName, path):
+        isMCStr = ""
         normFactorStr = ""
         if self.isMC:
+            isMCStr = "kTRUE"
             normFactorStr = "( lumi * {xSec_} ) / {sumWeight_}".format(xSec_=self.xSec, sumWeight_=self.sumWeight)
         else:
+            isMCStr = "kFALSE"
             normFactorStr = "1.0"
 
         str_codes = \
@@ -299,6 +304,7 @@ void Run()
 
   producer->sampleInfo_.type = "{sampleType_}";
   producer->sampleInfo_.ntuplePathFile = "{ntupleListName_}";
+  producer->sampleInfo_.isMC = "{isMCStr_}";  
   producer->sampleInfo_.xSec = {xSec_};
   producer->sampleInfo_.sumWeight = {sumWeight_};
   Double_t lumi = {luminosity_};
@@ -308,7 +314,7 @@ void Run()
 }}
 
 """.format(classCodePath_=self.classCodePath, className_=self.className,
-           sampleType_=self.sampleType, ntupleListName_=ntupleListName,
+           sampleType_=self.sampleType, ntupleListName_=ntupleListName, isMCStr_=isMCStr,
            xSec_=self.xSec, sumWeight_=self.sumWeight, luminosity_=self.luminosity, normFactorStr_=normFactorStr)
 
         rootCodePath = "%s/Run.cxx" % path
