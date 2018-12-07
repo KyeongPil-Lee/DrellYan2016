@@ -213,7 +213,11 @@ public:
       {
         DrellYan::MuonPair DYMuonPair = DrellYan::EventSelection_MuonChannel(ntuple);
         if( !DYMuonPair.isDummy )
-          hists->Fill(DYMuonPair, totWeight);
+        {
+          Double_t mass = DYMuonPair.mass;
+          if( 60 < mass && mass < 120 ) // -- Z-peak
+            hists->Fill(DYMuonPair, totWeight);
+        }
       }
     }
 
