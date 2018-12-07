@@ -224,7 +224,82 @@
     "sumWeight": 1.0,
     "comment": "NNLO cross section",
     "list_dir": ["v2.3/ZZ"]
+  },
+
+
+
+  {
+    "tag": "SingleMuon_Run2016B",
+    "isMC": 0,
+    "xSec": -1.0,
+    "sumWeight": -1.0,
+    "comment": "",
+    "list_dir": ["v2.3/SingleMuon_Run2016B"]
+  },
+
+  {
+    "tag": "SingleMuon_Run2016C",
+    "isMC": 0,
+    "xSec": -1.0,
+    "sumWeight": -1.0,
+    "comment": "",
+    "list_dir": ["v2.3/SingleMuon_Run2016C"]
+  },
+
+  {
+    "tag": "SingleMuon_Run2016D",
+    "isMC": 0,
+    "xSec": -1.0,
+    "sumWeight": -1.0,
+    "comment": "",
+    "list_dir": ["v2.3/SingleMuon_Run2016D"]
+  },
+
+  {
+    "tag": "SingleMuon_Run2016E",
+    "isMC": 0,
+    "xSec": -1.0,
+    "sumWeight": -1.0,
+    "comment": "",
+    "list_dir": ["v2.3/SingleMuon_Run2016E"]
+  },
+
+  {
+    "tag": "SingleMuon_Run2016F",
+    "isMC": 0,
+    "xSec": -1.0,
+    "sumWeight": -1.0,
+    "comment": "",
+    "list_dir": ["v2.3/SingleMuon_Run2016F"]
+  },
+
+  {
+    "tag": "SingleMuon_Run2016G",
+    "isMC": 0,
+    "xSec": -1.0,
+    "sumWeight": -1.0,
+    "comment": "",
+    "list_dir": ["v2.3/SingleMuon_Run2016G"]
+  },
+
+  {
+    "tag": "SingleMuon_Run2016Hver2",
+    "isMC": 0,
+    "xSec": -1.0,
+    "sumWeight": -1.0,
+    "comment": "",
+    "list_dir": ["v2.3/SingleMuon_Run2016Hver2"]
+  },
+
+  {
+    "tag": "SingleMuon_Run2016Hver3",
+    "isMC": 0,
+    "xSec": -1.0,
+    "sumWeight": -1.0,
+    "comment": "",
+    "list_dir": ["v2.3/SingleMuon_Run2016Hver3"]
   }
+
 
 ]
 
