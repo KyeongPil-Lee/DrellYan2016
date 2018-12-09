@@ -75,12 +75,12 @@ public:
     h_phi_lead_->Fill( muonPair.first_.phi, weight );
     h_phi_sub_ ->Fill( muonPair.second_.phi, weight );
 
-    h_diMuM_->Fill( muonPair.mass );
-    h_diMuRap_->Fill( muonPair.rap );
-    h_diMuPt_->Fill( muonPair.pt );
+    h_diMuM_->Fill( muonPair.mass, weight );
+    h_diMuRap_->Fill( muonPair.rap, weight );
+    h_diMuPt_->Fill( muonPair.pt, weight );
 
-    h_normVtxChi2_inner_->Fill( muonPair.normVtxChi2_inner );
-    h_angle3D_inner_->Fill( muonPair.angle3D_inner );
+    h_normVtxChi2_inner_->Fill( muonPair.normVtxChi2_inner, weight );
+    h_angle3D_inner_->Fill( muonPair.angle3D_inner, weight );
   }
 
   void Write(TFile *f_output)
