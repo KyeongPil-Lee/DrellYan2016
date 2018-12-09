@@ -313,6 +313,9 @@ public:
   Double_t legendMinY_;
   Double_t legendMaxY_;
 
+  Bool_t setLegendColumn_;
+  Int_t nLegendColumn_;
+
   Double_t minX_;
   Double_t maxX_;
   Bool_t setRangeX_;
@@ -377,6 +380,12 @@ public:
     legendMinY_ = minY;
     legendMaxX_ = maxX;
     legendMaxY_ = maxY;
+  }
+
+  void SetLegendColumn( Int_t nColumn )
+  {
+    setLegendColumn_ = kTRUE;
+    nLegendColumn_ = nColumn;
   }
 
   void SetRangeX( Double_t min, Double_t max )
@@ -444,6 +453,9 @@ public:
     legendMinY_ = 0.70;
     legendMaxX_ = 0.95;
     legendMaxY_ = 0.95;
+
+    setLegendColumn_ = kFALSE;
+    nLegendColumn_ = 1;
 
     setRangeX_ = kFALSE;
     minX_ = 0;
@@ -615,6 +627,7 @@ public:
 
     TLegend *legend;
     PlotTool::SetLegend( legend, legendMinX_, legendMinY_, legendMaxX_, legendMaxY_ );
+    if( setLegendColumn_ ) legend->SetNColumns(nLegendColumn_);
 
     // -- draw canvas
     SetCanvas_Square();
@@ -677,6 +690,7 @@ public:
 
     TLegend *legend;
     PlotTool::SetLegend( legend, legendMinX_, legendMinY_, legendMaxX_, legendMaxY_ );
+    if( setLegendColumn_ ) legend->SetNColumns(nLegendColumn_);
 
     // -- draw canvas
     SetCanvas_Ratio();
@@ -799,6 +813,7 @@ public:
     // -- make legend
     TLegend *legend;
     PlotTool::SetLegend( legend, legendMinX_, legendMinY_, legendMaxX_, legendMaxY_ );
+    if( setLegendColumn_ ) legend->SetNColumns(nLegendColumn_);
 
     // -- setup data, MC stacks + add in the legend
     SetDataHistogram(legend);
@@ -962,6 +977,7 @@ public:
 
     TLegend *legend;
     PlotTool::SetLegend( legend, legendMinX_, legendMinY_, legendMaxX_, legendMaxY_ );
+    if( setLegendColumn_ ) legend->SetNColumns(nLegendColumn_);
 
     // -- draw canvas
     SetCanvas_Square();
@@ -1026,6 +1042,7 @@ public:
 
     TLegend *legend;
     PlotTool::SetLegend( legend, legendMinX_, legendMinY_, legendMaxX_, legendMaxY_ );
+    if( setLegendColumn_ ) legend->SetNColumns(nLegendColumn_);
 
     // -- draw canvas
     SetCanvas_Ratio();
