@@ -18,8 +18,9 @@ generator.dic_nJob = {
   "WW":    1,
   "WZ":    1,
   "ZZ":    1,
-  "ttbar":  12,
-  "DYMuMu_M50toInf": 12,
+  "ttbar":  9,
+  "DYMuMu_M50toInf": 8,
+  "DYTauTau_M50toInf": 8,
    }
 
 generator.outputPath = "/scratch/kplee/DYJob"
