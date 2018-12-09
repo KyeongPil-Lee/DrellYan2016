@@ -21,11 +21,12 @@ Bool_t SelectGenEventBySampleType(TString type, NtupleHandle *ntuple)
 {
   Bool_t flag = kFALSE;
 
-  if( type.Contains("DYMuMu") || type.Contains("DYEE") )
+  if( type.Contains("DYMuMu") || type.Contains("DYEE") || type.Contains("DYTauTau") )
   {
     Int_t requiredID = 0;
-    if( type.Contains("DYEE") )   requiredID = 11;
-    if( type.Contains("DYMuMu") ) requiredID = 13;
+    if( type.Contains("DYEE") )     requiredID = 11;
+    if( type.Contains("DYMuMu") )   requiredID = 13;
+    if( type.Contains("DYTauTau") ) requiredID = 15;
 
     vector<GenLepton> vec_genLepton;
     for(Int_t i_gen=0; i_gen<ntuple->nGenLepton; i_gen++)

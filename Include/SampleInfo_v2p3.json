@@ -200,6 +200,15 @@
   },
 
   {
+    "tag": "DYTauTau_M50toInf",
+    "isMC": 1,
+    "xSec": 2034.66666,
+    "sumWeight": 27257791.0,
+    "comment": "x-section = 6104/3",
+    "list_dir": ["v2.3/DYLL_M50toInf"]
+  },
+
+  {
     "tag": "WW",
     "isMC": 1,
     "xSec": 118.7,
