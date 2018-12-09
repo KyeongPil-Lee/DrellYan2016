@@ -16,13 +16,14 @@ generator.jsonName = "SampleInfo_v2p3.json" # -- under DY_ANALYZER_PATH/Include
 #   }
 
 generator.dic_nJob = { 
-  "WJets": 10,
-  "ttbar": 10,
-  "tW":    1,
-  "tbarW": 1,
-  "WW":    1,
-  "WZ":    1,
-  "ZZ":    1,
+  # "WJets": 10,
+  # "ttbar": 10,
+  # "tW":    1,
+  # "tbarW": 1,
+  # "WW":    1,
+  # "WZ":    1,
+  # "ZZ":    1,
+  "DYTauTau_M50toInf": 10,
   }
 
 generator.outputPath = "/scratch/kplee/DYJob"
