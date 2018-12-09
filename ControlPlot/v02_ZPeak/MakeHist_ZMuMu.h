@@ -105,9 +105,9 @@ private:
     h_phi_lead_ = new TH1D("h_phi_lead", "", 80, -4, 4);
     h_phi_sub_  = new TH1D("h_phi_sub",  "", 80, -4, 4);
 
-    h_diMuM_ = new TH1D("h_diMuM_",     "", 10000, 0, 10000);
-    h_diMuPt_ = new TH1D("h_diMuPt_",   "", 10000, 0, 10000);
-    h_diMuRap_ = new TH1D("h_diMuRap_", "", 60, -3, 3);
+    h_diMuM_ = new TH1D("h_diMuM",     "", 10000, 0, 10000);
+    h_diMuPt_ = new TH1D("h_diMuPt",   "", 10000, 0, 10000);
+    h_diMuRap_ = new TH1D("h_diMuRap", "", 60, -3, 3);
 
     h_isGLB_           = new TH1D("h_isGLB",           "", 2, 0, 2);
     h_nMuonHit_        = new TH1D("h_nMuonHit",        "", 100, 0, 100);
