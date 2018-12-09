@@ -17,6 +17,32 @@ const Int_t nPUBin = 75;
 // Double_t lumi_BeforeL2Fix = 656.977 // -- integrated luminosity before Run 274094
 // Double_t lumi_RunG = 7554.454 // -- integrated luminosity for Run2016G
 
+
+enum ColorCode
+{
+  // -- stack plots
+  kDY    = kOrange-2,  // -- signal (DY->mumu, DY->ee)
+  kTop   = kRed+2,     // -- ttbar + tW + tbarW
+  kEW    = kOrange+10, // -- DY->tautau + WW + WZ + ZZ
+  kFakes = kViolet-5,  // -- W+jets + QCD
+
+  kttbar = kRed+2,
+  ktW    = kRed+1,
+  ktbarW = kRed+3,
+  kDYTauTau = kBlue-9,
+  kWW = kGreen+2,
+  kWZ = kGreen-9,
+  kZZ = kGreen,
+  kWJets = kCyan,
+  kQCD   = kViolet,
+
+  // -- for cross section plots
+  kStatUnc = kBlack,
+  kTotUnc  = kGray+1,
+  kFEWZ    = kBlue,
+  kaMCNLO  = kRed
+};
+
 Bool_t SelectGenEventBySampleType(TString type, NtupleHandle *ntuple)
 {
   Bool_t flag = kFALSE;
