@@ -67,7 +67,7 @@ public:
 
   void Save(TFile *f_output)
   {
-    f_output->cd();
+    // f_output->cd();
     for( const auto& h : vec_hist_ )
       h->Write();
   }
@@ -343,24 +343,21 @@ public:
 
     TString outputName = TString::Format("ROOTFile_aMCNLO_DiPtRap_%s.root", sampleInfo_.type.Data());
     TFile *f_output = TFile::Open(outputName, "RECREATE");
-
+    f_output->cd();
     hist_belowZPeak->Save( f_output );
     hist_ZPeak->Save( f_output );
     hist_aboveZPeak->Save( f_output );
     hist_highMass->Save( f_output );
 
-    f_output->Close();
-
     // -- save MC stat hists.
-    TString outputName_MCStat = TString::Format("ROOTFile_aMCNLO_DiPtRap_%s_MCStat.root", sampleInfo_.type.Data());
-    TFile *f_output_MCStat = TFile::Open(outputName_MCStat, "RECREATE");
+    f_output->mkdir("MCStat");
+    f_output->cd("MCStat");
+    hist_belowZPeak_MCStat->Save( f_output );
+    hist_ZPeak_MCStat->Save( f_output );
+    hist_aboveZPeak_MCStat->Save( f_output );
+    hist_highMass_MCStat->Save( f_output );
 
-    hist_belowZPeak_MCStat->Save( f_output_MCStat );
-    hist_ZPeak_MCStat->Save( f_output_MCStat );
-    hist_aboveZPeak_MCStat->Save( f_output_MCStat );
-    hist_highMass_MCStat->Save( f_output_MCStat );
-
-    f_output_MCStat->Close();
+    f_output->Close();
   }
 };
 
