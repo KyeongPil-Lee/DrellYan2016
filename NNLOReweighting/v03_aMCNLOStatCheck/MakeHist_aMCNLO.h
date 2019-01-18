@@ -242,7 +242,7 @@ public:
 
     // -- histogram initialization
     vector<Double_t> vec_massBinEdge_belowZPeak = {15, 20, 30, 45, 60};
-    vector<Double_t> vec_diPtBinEdge_belowZPeak = {0, 20, 25, 30, 100, 1000};
+    vector<Double_t> vec_diPtBinEdge_belowZPeak = {0, 30, 100, 1000};
     vector<Double_t> vec_diRapBinEdge_belowZPeak = {0, 1.5, 2.4, 100};
     HistContainer* hist_belowZPeak 
       = new HistContainer(vec_massBinEdge_belowZPeak, 
@@ -250,7 +250,7 @@ public:
                           vec_diRapBinEdge_belowZPeak);
 
     vector<Double_t> vec_massBinEdge_ZPeak = {60, 72, 106, 120};
-    vector<Double_t> vec_diPtBinEdge_ZPeak = {0, 10, 15, 20, 25, 30, 50, 70, 90, 1000};
+    vector<Double_t> vec_diPtBinEdge_ZPeak = {0, 20, 25, 30, 50, 70, 90, 1000};
     vector<Double_t> vec_diRapBinEdge_ZPeak = {0, 1.2, 1.8, 2.4, 100};
     HistContainer* hist_ZPeak 
       = new HistContainer(vec_massBinEdge_ZPeak, 
@@ -258,7 +258,7 @@ public:
                           vec_diRapBinEdge_ZPeak);
 
     vector<Double_t> vec_massBinEdge_aboveZPeak = {120, 133, 150, 171, 200, 400, 510, 1000};
-    vector<Double_t> vec_diPtBinEdge_aboveZPeak = {0, 10, 15, 20, 25, 30, 40, 60, 80, 1000};
+    vector<Double_t> vec_diPtBinEdge_aboveZPeak = {0, 20, 30, 40, 60, 80, 1000};
     vector<Double_t> vec_diRapBinEdge_aboveZPeak = {0, 0.9, 1.5, 2.4, 100};
     HistContainer* hist_aboveZPeak 
       = new HistContainer(vec_massBinEdge_aboveZPeak, 
@@ -266,7 +266,7 @@ public:
                           vec_diRapBinEdge_aboveZPeak);
 
     vector<Double_t> vec_massBinEdge_highMass = {1000, 3000};
-    vector<Double_t> vec_diPtBinEdge_highMass = {0, 20, 30, 100, 1000};
+    vector<Double_t> vec_diPtBinEdge_highMass = {0, 30, 100, 1000};
     vector<Double_t> vec_diRapBinEdge_highMass = {0, 0.9, 1.5, 100};
     HistContainer* hist_highMass 
       = new HistContainer(vec_massBinEdge_highMass, 
@@ -365,7 +365,7 @@ void Test()
 {
   HistProducer* producer = new HistProducer();
 
-  producer->sampleInfo_.type = "DYMuMu_M50";
+  producer->sampleInfo_.type = "Test_DYMuMu_M50";
   producer->sampleInfo_.ntuplePathFile = "/Users/KyeongPil_Lee/Physics/ExampleROOTFile/TestROOTFile.txt";
   producer->sampleInfo_.xSec = 10000;
   producer->sampleInfo_.sumWeight = 10000;
