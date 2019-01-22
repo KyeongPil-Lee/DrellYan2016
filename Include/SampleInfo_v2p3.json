@@ -235,6 +235,96 @@
     "list_dir": ["v2.3/ZZ"]
   },
 
+  {
+    "tag": "ZMuMuPowheg_M50to120",
+    "isMC": 1,
+    "xSec": 1975.0,
+    "sumWeight": 1.0,
+    "comment": "NLO cross section",
+    "list_dir": ["v2.3/ZToMuMu_M50to120"]
+  },
+
+  {
+    "tag": "ZMuMuPowheg_M120to200",
+    "isMC": 1,
+    "xSec": 1.0,
+    "sumWeight": 1.0,
+    "comment": "NLO cross section",
+    "list_dir": ["v2.3/ZToMuMu_M120to200"]
+  },
+
+  {
+    "tag": "ZMuMuPowheg_M200to400",
+    "isMC": 1,
+    "xSec": 1.0,
+    "sumWeight": 1.0,
+    "comment": "NLO cross section",
+    "list_dir": ["v2.3/ZToMuMu_M200to400"]
+  },
+
+  {
+    "tag": "ZMuMuPowheg_M400to800",
+    "isMC": 1,
+    "xSec": 1.0,
+    "sumWeight": 1.0,
+    "comment": "NLO cross section",
+    "list_dir": ["v2.3/ZToMuMu_M400to800"]
+  },
+
+  {
+    "tag": "ZMuMuPowheg_M800to1400",
+    "isMC": 1,
+    "xSec": 1.0,
+    "sumWeight": 1.0,
+    "comment": "NLO cross section",
+    "list_dir": ["v2.3/ZToMuMu_M800to1400"]
+  },
+
+  {
+    "tag": "ZMuMuPowheg_M1400to2300",
+    "isMC": 1,
+    "xSec": 1.0,
+    "sumWeight": 1.0,
+    "comment": "NLO cross section",
+    "list_dir": ["v2.3/ZToMuMu_M1400to2300"]
+  },
+
+  {
+    "tag": "ZMuMuPowheg_M2300to3500",
+    "isMC": 1,
+    "xSec": 1.0,
+    "sumWeight": 1.0,
+    "comment": "NLO cross section",
+    "list_dir": ["v2.3/ZToMuMu_M2300to3500"]
+  },
+
+  {
+    "tag": "ZMuMuPowheg_M3500to4500",
+    "isMC": 1,
+    "xSec": 1.0,
+    "sumWeight": 1.0,
+    "comment": "NLO cross section",
+    "list_dir": ["v2.3/ZToMuMu_M3500to4500"]
+  },
+
+  {
+    "tag": "ZMuMuPowheg_M4500to6000",
+    "isMC": 1,
+    "xSec": 1.0,
+    "sumWeight": 1.0,
+    "comment": "NLO cross section",
+    "list_dir": ["v2.3/ZToMuMu_M4500to6000"]
+  },
+
+  {
+    "tag": "ZMuMuPowheg_M6000toInf",
+    "isMC": 1,
+    "xSec": 1.0,
+    "sumWeight": 1.0,
+    "comment": "NLO cross section",
+    "list_dir": ["v2.3/ZToMuMu_M6000toInf"]
+  },
+
 
 
   {
