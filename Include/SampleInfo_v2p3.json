@@ -67,7 +67,7 @@
     "tag": "DYMuMu_M100to200_fixed",
     "isMC": 1,
     "xSec": 78.1258,
-    "sumWeight": 3433295.0,
+    "sumWeight": 3176762.0,
     "comment": "# jets is fixed, QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
     "list_dir": ["v2.3/DYLL_M100to200_fixed"]
   },
@@ -85,7 +85,7 @@
     "tag": "DYMuMu_M200to400_fixed",
     "isMC": 1,
     "xSec": 2.73309,
-    "sumWeight": 56340.0,
+    "sumWeight": 560322.0,
     "comment": "# jets is fixed, QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED",
     "list_dir": ["v2.3/DYLL_M200to400_fixed"]
   },
