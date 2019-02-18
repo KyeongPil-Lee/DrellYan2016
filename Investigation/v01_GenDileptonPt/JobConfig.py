@@ -11,7 +11,7 @@ generator.jsonName = "SampleInfo_v2p3.json" # -- under DY_ANALYZER_PATH/Include
 
 generator.dic_nJob = { 
   "DYMuMu_M200to400":   2,
-  "DYMuMu_M50":   10,
+  "DYMuMu_M50toInf":   10,
   "DYMuMu_M200to400_fixed":   2,
   "ZMuMuPowheg_M200to400":   2,
   }
