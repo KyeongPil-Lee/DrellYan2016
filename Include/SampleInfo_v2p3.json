@@ -39,9 +39,9 @@
   {
     "tag": "DYMuMu_M50toInf",
     "isMC": 1,
-    "xSec": 2034.66666,
+    "xSec": 2009.41,
     "sumWeight": 27257791.0,
-    "comment": "x-section = 6104/3",
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED (50 < M < 10000, integ. error = 1.55728 pb, PDF error = 14.7185)",
     "list_dir": ["v2.3/DYLL_M50toInf"]
   },
 
@@ -220,9 +220,9 @@
   {
     "tag": "DYTauTau_M50toInf",
     "isMC": 1,
-    "xSec": 2034.66666,
-    "sumWeight": 27277866.0,
-    "comment": "x-section = 6104/3",
+    "xSec": 2009.41,
+    "sumWeight": 27257791.0,
+    "comment": "QCD@NNLO + EWK@NLO cross section by FEWZ with NNPDF3.1+luxQED (50 < M < 10000, integ. error = 1.55728 pb, PDF error = 14.7185)",
     "list_dir": ["v2.3/DYLL_M50toInf"]
   },
 
