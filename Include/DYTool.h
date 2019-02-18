@@ -238,6 +238,52 @@ void AddNtupleToChain(TChain* chain, TString textFileName)
   cout << "==================================" << endl;
 }
 
+vector<DrellYan::GenLepton> GetAllGenLeptons(NtupleHandle *ntuple, Int_t pdgID, TString genFlagName)
+{
+  vector< DrellYan::GenLepton > vec_genLepton;
+  vec_genLepton.clear();
+
+  if( genFlagName != "isHardProcess" && 
+      genFlagName != "fromHardProcessFinalState" )
+  {
+    cout << "[DYTool::GetAllGenMuons_GenFlag] genFlagName = " << genFlagName << " is not supported -> empty vector is returned" << endl;
+    cout << "  Update the code if you want to use " << genFlagName << endl;
+    return vec_genLepton;
+  }
+
+  if( pdgID != 11 && pdgID != 13 )
+  {
+    {
+      cout << "[DYTool::GetAllGenMuons_GenFlag] pdgID = " << pdgID << "is not supported -> empty vector is returned" << endl;
+      cout << "  Update the code if you want to use " << pdgID << endl;
+      return vec_genLepton;
+    }
+
+  }
+
+  for(Int_t i_gen=0; i_gen<ntuple->nGenLepton; i_gen++)
+  {
+    DrellYan::GenLepton genLepton( ntuple, i_gen );
+
+    if( fabs(genLepton.ID) == pdgID )
+    {
+      if( genFlagName == "isHardProcess" )
+      {
+        if( genLepton.isHardProcess ) 
+          vec_genLepton.push_back( genLepton );
+      }
+      else if( genFlagName == "fromHardProcessFinalState" )
+      {
+        if( genLepton.fromHardProcessFinalState ) 
+          vec_genLepton.push_back( genLepton );
+      }
+    }
+  }
+
+  return vec_genLepton;
+}
+
+
 vector<Muon> GetAllMuons(NtupleHandle *ntuple)
 {
   vector<Muon> vec_muon;
