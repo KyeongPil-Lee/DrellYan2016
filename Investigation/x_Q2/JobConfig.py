@@ -21,7 +21,8 @@ generator.jsonName = "SampleInfo_v2p3.json" # -- under DY_ANALYZER_PATH/Include
 
 # -- if "_skim" is added, it runs over skimmed ntuples
 generator.dic_nJob = { 
-    "DYMuMu_M15to50": 30,
+    "DYMuMu_M10to50_NLOXSec": 30,
+    # "DYMuMu_M15to50": 30,
     "DYMuMu_M50to100": 30,
     "DYMuMu_M100to200_fixed": 5,
     "DYMuMu_M200to400_fixed": 3,
