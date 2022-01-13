@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 
+#include <TObjString.h>
 #include <Include/Object.h>
 
 namespace DrellYan
