@@ -137,29 +137,47 @@ private:
   }
 
   void Init_Hist() {
-    Double_t nBin_x = 1000;
-    Double_t min_x = 1e-5;
-    Double_t max_x = 1;
-    Double_t nBin_Q2 = 100;
-    Double_t min_Q2 = 1;
-    Double_t max_Q2 = 10000;
+    const Int_t nBin_x = 45;
+    Double_t arr_binEdge_x[nBin_x+1] = {
+      1e-5, 2e-5, 3e-5, 4e-5, 5e-5, 6e-5, 7e-5, 8e-5, 9e-5,
+      1e-4, 2e-4, 3e-4, 4e-4, 5e-4, 6e-4, 7e-4, 8e-4, 9e-4,
+      1e-3, 2e-3, 3e-3, 4e-3, 5e-3, 6e-3, 7e-3, 8e-3, 9e-3,
+      1e-2, 2e-2, 3e-2, 4e-2, 5e-2, 6e-2, 7e-2, 8e-2, 9e-2,
+      1e-1, 2e-1, 3e-1, 4e-1, 5e-1, 6e-1, 7e-1, 8e-1, 9e-1, 1.0
+    };
+
+    const Int_t nBin_Q2 = 45;
+    Double_t arr_binEdge_Q2[nBin_Q2+1] = {
+      1, 2, 3, 4, 5, 6, 7, 8, 9,
+      1e1, 2e1, 3e1, 4e1, 5e1, 6e1, 7e1, 8e1, 9e1,
+      1e2, 2e2, 3e2, 4e2, 5e2, 6e2, 7e2, 8e2, 9e2,
+      1e3, 2e3, 3e3, 4e3, 5e3, 6e3, 7e3, 8e3, 9e3,
+      1e4, 2e4, 3e4, 4e4, 5e4, 6e4, 7e4, 8e4, 9e4, 1e5
+    };
+
+    // Double_t nBin_x = 1000;
+    // Double_t min_x = 1e-5;
+    // Double_t max_x = 1;
+    // Double_t nBin_Q2 = 100;
+    // Double_t min_Q2 = 1;
+    // Double_t max_Q2 = 10000;
 
     vector<TString> vec_tag_mass = {"lowM", "ZPeak", "highM"};
     vector<TString> vec_tag_rap  = {"lowY", "highY"};
     vector<TString> vec_tag_pt   = {"lowPt", "middlePt", "highPt"};
 
     for(auto& tag_mass : vec_tag_mass) {
-      TH2D* h2D_x_Q2_mass = new TH2D("h2D_x_Q2_"+tag_mass, "", nBin_x, min_x, max_x, nBin_Q2, min_Q2, max_Q2);
+      TH2D* h2D_x_Q2_mass = new TH2D("h2D_x_Q2_"+tag_mass, "", nBin_x, arr_binEdge_x, nBin_Q2, arr_binEdge_Q2);
       map_tag_h2D_[tag_mass] = h2D_x_Q2_mass;
 
       for(auto& tag_rap : vec_tag_rap) {
         TString tag_mass_rap = tag_mass+"_"+tag_rap;
-        TH2D* h2D_x_Q2_mass_rap = new TH2D("h2D_x_Q2_"+tag_mass_rap, "", nBin_x, min_x, max_x, nBin_Q2, min_Q2, max_Q2);
+        TH2D* h2D_x_Q2_mass_rap = new TH2D("h2D_x_Q2_"+tag_mass_rap, "", nBin_x, arr_binEdge_x, nBin_Q2, arr_binEdge_Q2);
         map_tag_h2D_[tag_mass_rap] = h2D_x_Q2_mass_rap;
 
         for(auto& tag_pt : vec_tag_pt) {
           TString tag_mass_rap_pt = tag_mass+"_"+tag_rap+"_"+tag_pt;
-          TH2D* h2D_x_Q2_mass_rap_pt = new TH2D("h2D_x_Q2_"+tag_mass_rap_pt, "", nBin_x, min_x, max_x, nBin_Q2, min_Q2, max_Q2);
+          TH2D* h2D_x_Q2_mass_rap_pt = new TH2D("h2D_x_Q2_"+tag_mass_rap_pt, "", nBin_x, arr_binEdge_x, nBin_Q2, arr_binEdge_Q2);
           map_tag_h2D_[tag_mass_rap_pt] = h2D_x_Q2_mass_rap_pt;
         } // -- iteration over tag_pt
       } // -- iteration over tag_rap
@@ -168,7 +186,7 @@ private:
     for(auto& tag_mass : vec_tag_mass) {
       for(auto& tag_pt : vec_tag_pt) {
         TString tag_mass_pt = tag_mass+"_"+tag_pt;
-        TH2D* h2D_x_Q2_mass_pt = new TH2D("h2D_x_Q2_"+tag_mass_pt, "", nBin_x, min_x, max_x, nBin_Q2, min_Q2, max_Q2);
+        TH2D* h2D_x_Q2_mass_pt = new TH2D("h2D_x_Q2_"+tag_mass_pt, "", nBin_x, arr_binEdge_x, nBin_Q2, arr_binEdge_Q2);
         map_tag_h2D_[tag_mass_pt] = h2D_x_Q2_mass_pt;
       } // -- iter over tag_pt
     } // -- iter over tag_mass
