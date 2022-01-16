@@ -57,6 +57,10 @@ public:
     Double_t Q = ntuple->genEvent_QScale;
     Double_t Q2 = Q*Q;
 
+    // -- all events
+    map_tag_h2D_["all"]->Fill( x1, Q2, weight );
+    map_tag_h2D_["all"]->Fill( x2, Q2, weight );
+
     if( tag_mass != "" ) {
       TString tag = tag_mass;
       map_tag_h2D_[tag]->Fill( x1, Q2, weight );
@@ -162,6 +166,11 @@ private:
     // Double_t min_Q2 = 1;
     // Double_t max_Q2 = 10000;
 
+    // -- all DY events
+    TH2D* h2D_x_Q2_all = new TH2D("h2D_x_Q2_all", "", nBin_x, arr_binEdge_x, nBin_Q2, arr_binEdge_Q2);
+    map_tag_h2D_["all"] = h2D_x_Q2_all;
+
+    // -- specific region in dilepton variables
     vector<TString> vec_tag_mass = {"lowM", "ZPeak", "highM"};
     vector<TString> vec_tag_rap  = {"lowY", "highY"};
     vector<TString> vec_tag_pt   = {"lowPt", "middlePt", "highPt"};
