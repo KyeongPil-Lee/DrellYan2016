@@ -150,7 +150,7 @@ private:
       1e-1, 2e-1, 3e-1, 4e-1, 5e-1, 6e-1, 7e-1, 8e-1, 9e-1, 1.0
     };
 
-    const Int_t nBin_Q2 = 54;
+    const Int_t nBin_Q2 = 63;
     Double_t arr_binEdge_Q2[nBin_Q2+1] = {
       1, 2, 3, 4, 5, 6, 7, 8, 9,
       1e1, 2e1, 3e1, 4e1, 5e1, 6e1, 7e1, 8e1, 9e1,
