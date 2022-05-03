@@ -16,7 +16,7 @@ generator.dic_nJob = {
   # "ZMuMuPowheg_M200to400":   2,
   }
 
-generator.outputPath = "/scratch/kplee/DYJob"
+generator.outputPath = "/data9/Users/kplee/DrellYan2016Job"
 generator.bringOutput = True # -- bring output root file to the current working directory where JobConfig is executed
 
 generator.Generate()
