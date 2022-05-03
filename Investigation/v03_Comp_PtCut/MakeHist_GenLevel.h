@@ -98,6 +98,11 @@ public:
 
   void Fill(DrellYan::GenPair& genPair, Double_t weight) {
 
+    Bool_t passEtaCut = kFALSE;
+    if( fabs(genPair.first_.eta) < 2.4 && fabs(genPair.second_.eta) < 2.4 ) passEtaCut = kTRUE;
+
+    if( !passEtaCut ) return;
+
     Bool_t is2817_ = kFALSE;
     if( genPair.first_.pt > 28 && genPair.second_.pt > 17 ) is2817_ = kTRUE;
 
