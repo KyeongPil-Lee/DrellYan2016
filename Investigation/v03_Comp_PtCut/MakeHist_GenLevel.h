@@ -276,7 +276,7 @@ public:
     } // -- end of event iteration
 
     // -- save histogram: only one root file is allowed as an output (if not, merging step will be screwed up!)
-    TString outputName = TString::Format("ROOTFile_MakeHist_GenDileptonPt_%s.root", sampleInfo_.type.Data());
+    TString outputName = GetOutputFileName("MakeHist_GenLevel");
     TFile *f_output = TFile::Open(outputName, "RECREATE");
     fullHist->Write(f_output);
     f_output->Close();
