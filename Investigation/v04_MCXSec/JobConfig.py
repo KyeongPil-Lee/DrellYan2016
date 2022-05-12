@@ -33,6 +33,7 @@ generator.dic_nJob = {
     "DYMuMu_M1000to1500": 3,
     "DYMuMu_M1500to2000": 3,
     "DYMuMu_M2000to3000": 3,
+    "DYMuMu_M50toInf": 30,
   }
 
 generator.baseWSPath = "/data9/Users/kplee/DrellYan2016Job"
