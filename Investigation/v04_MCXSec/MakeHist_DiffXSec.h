@@ -81,8 +81,8 @@ public:
         h_diMu_mass_full->Fill(diMu_mass, totWeight);
 
         Bool_t pass_acc = kFALSE;
-        if( genPair_dressed.first_.pt > 20 && fabs(genPair_dressed.first_.eta) < 2.4 &&
-            genPair_dressed.first_.pt > 15 && fabs(genPair_dressed.first_.eta) < 2.4)
+        if( genPair_dressed.first_.pt  > 20 && fabs(genPair_dressed.first_.eta)  < 2.4 &&
+            genPair_dressed.second_.pt > 15 && fabs(genPair_dressed.second_.eta) < 2.4)
           pass_acc = kTRUE;
 
         if( !pass_acc ) continue;
