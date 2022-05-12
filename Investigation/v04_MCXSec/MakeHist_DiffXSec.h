@@ -93,7 +93,7 @@ public:
     } // -- end of event iteration
 
     // -- save histogram: only one root file is allowed as an output (if not, merging step will be screwed up!)
-    TString outputName = TString::Format("ROOTFile_MakeHist_DiffXSec_%s.root", sampleInfo_.type.Data());
+    TString outputName = GetOutputFileName("MakeHist_DiffXSec");
     TFile *f_output = TFile::Open(outputName, "RECREATE");
     h_diMu_mass_full->Write();
     h_diMu_mass->Write();
