@@ -427,6 +427,17 @@
                  "v2.3/SingleMuon_Run2016D", "v2.3/SingleMuon_Run2016E", 
                  "v2.3/SingleMuon_Run2016F", "v2.3/SingleMuon_Run2016G", 
                  "v2.3/SingleMuon_Run2016Hver2", "v2.3/SingleMuon_Run2016Hver3"]
+  },
+
+  {
+    "tag": "SingleMuon_Run2016BtoF",
+    "isMC": 0,
+    "xSec": -1.0,
+    "sumWeight": -1.0,
+    "comment": "",
+    "list_dir": ["v2.3/SingleMuon_Run2016B", "v2.3/SingleMuon_Run2016C", 
+                 "v2.3/SingleMuon_Run2016D", "v2.3/SingleMuon_Run2016E", 
+                 "v2.3/SingleMuon_Run2016F"]
   }
 
 
