@@ -70,7 +70,7 @@ public:
       TLorentzVector vecP_HLTObj;
       if( IsTrigMatchedByDR(mu.vecP, ntuple, "HLT_Mu20_v*", vecP_HLTObj) ) {
 
-        cout << "vecP_HLTObj.Pt() = " << vecP_HLTObj.Pt() << endl;
+        // cout << "vecP_HLTObj.Pt() = " << vecP_HLTObj.Pt() << endl;
 
         histSet_->Fill( "pt", vecP_HLTObj.Pt(), weight );
         histSet_->Fill( "eta", vecP_HLTObj.Eta(), weight );
