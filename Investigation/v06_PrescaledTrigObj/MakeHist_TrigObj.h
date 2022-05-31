@@ -65,6 +65,20 @@ public:
   void Fill( NtupleHandle* ntuple, Double_t weight ) {
     vector<DrellYan::Muon> vec_muon = DrellYan::GetAllMuons(ntuple);
 
+    Bool_t isMu50    = IsTriggered(ntuple, "HLT_Mu50_v*");
+    Bool_t isMu20    = IsTriggered(ntuple, "HLT_Mu20_v*");
+    Bool_t isIsoMu24 = IsTriggered(ntuple, "HLT_IsoMu24_v*");
+
+    if( isMu50 ) {
+      if( isMu20 ) histSet_->Fill( "nEvent_Mu50_Mu20", 1.5, weight ); // -- fill "true" bin
+      else         histSet_->Fill( "nEvent_Mu50_Mu20", 0.5, weight ); // -- fill "false" bin
+    }
+
+    if( isIsoMu24 ) {
+      if( isMu20 ) histSet_->Fill( "nEvent_IsoMu24_Mu20", 1.5, weight ); // -- fill "true" bin
+      else         histSet_->Fill( "nEvent_IsoMu24_Mu20", 0.5, weight ); // -- fill "false" bin
+    }
+
     for(auto mu : vec_muon) {
 
       TLorentzVector vecP_HLTObj;
@@ -93,6 +107,9 @@ private:
     histSet_->Register("pt",  10000, 0, 10000);
     histSet_->Register("eta", 60, -3, 3);
     histSet_->Register("phi", 80, -4, 4);
+
+    histSet_->Register("nEvent_Mu50_Mu20",    2, 0, 2);
+    histSet_->Register("nEvent_IsoMu24_Mu20", 2, 0, 2);
   }
 
   Bool_t IsTrigMatchedByDR(const TLorentzVector& vecP, NtupleHandle *ntuple, TString HLT, TLorentzVector &vecP_HLTObj)
@@ -122,6 +139,29 @@ private:
       }
     }
     return isMatched;
+  }
+
+  Bool_t IsTriggered(NtupleHandle* ntuple, TString HLT) {
+    Bool_t isFired = kFALSE;
+    Bool_t isFound = kFALSE;
+
+    vector<std::string> *vec_trigName = ntuple->HLT_trigName;
+    Int_t nTrig = ntuple->HLT_nTrig;
+
+    for(Int_t k=0; k<nTrig; k++) {
+      if( (vec_trigName->at((unsigned int)k)) == HLT ) {
+        isFound = kTRUE;
+        isFired = ntuple->HLT_trigFired[k] > 0 ? kTRUE : kFALSE;
+        break;
+      }
+    }
+
+    if( !isFound ) {
+      cout << "[HistContainer::IsTriggered] HLT = " << HLT << "is not found in the list! ... return false" << endl;
+      return kFALSE;
+    }
+
+    return isFired;
   }
 
 };
