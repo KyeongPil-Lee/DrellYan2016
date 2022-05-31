@@ -81,21 +81,54 @@ public:
 
     for(auto mu : vec_muon) {
 
-      TLorentzVector vecP_HLTObj;
-      if( IsTrigMatchedByDR(mu.vecP, ntuple, "HLT_Mu20_v*", vecP_HLTObj) ) {
+      TLorentzVector vecP_HLTObj_Mu20;
+      Bool_t isMatched_Mu20 = IsTrigMatchedByDR(mu.vecP, ntuple, "HLT_Mu20_v*", vecP_HLTObj_Mu20);
+      if( isMatched_Mu20 ) {
 
-        // cout << "vecP_HLTObj.Pt() = " << vecP_HLTObj.Pt() << endl;
-
-        histSet_->Fill( "pt", vecP_HLTObj.Pt(), weight );
-        histSet_->Fill( "eta", vecP_HLTObj.Eta(), weight );
-        histSet_->Fill( "phi", vecP_HLTObj.Phi(), weight );
+        histSet_->Fill( "pt", vecP_HLTObj_Mu20.Pt(), weight );
+        histSet_->Fill( "eta", vecP_HLTObj_Mu20.Eta(), weight );
+        histSet_->Fill( "phi", vecP_HLTObj_Mu20.Phi(), weight );
 
         if( isMu20 ) {
-          histSet_->Fill( "pt_Mu20Fired", vecP_HLTObj.Pt(), weight );
-          histSet_->Fill( "eta_Mu20Fired", vecP_HLTObj.Eta(), weight );
-          histSet_->Fill( "phi_Mu20Fired", vecP_HLTObj.Phi(), weight );
+          histSet_->Fill( "pt_Mu20Fired", vecP_HLTObj_Mu20.Pt(), weight );
+          histSet_->Fill( "eta_Mu20Fired", vecP_HLTObj_Mu20.Eta(), weight );
+          histSet_->Fill( "phi_Mu20Fired", vecP_HLTObj_Mu20.Phi(), weight );
         }
       }
+
+      TLorentzVector vecP_HLTObj_Mu45Eta2p1;
+      Bool_t isMatched_Mu45Eta2p1 = IsTrigMatchedByDR(mu.vecP, ntuple, "HLT_Mu45_eta2p1_v*", vecP_HLTObj_Mu45Eta2p1);
+
+      TLorentzVector vecP_HLTObj_Mu50;
+      Bool_t isMatched_Mu50 = IsTrigMatchedByDR(mu.vecP, ntuple, "HLT_Mu50_v*", vecP_HLTObj_Mu50);
+
+      if( isMatched_Mu20 || isMatched_Mu45Eta2p1 ) {
+        if( isMatched_Mu20 ) {
+          histSet_->Fill( "pt_Mu20_or_Mu45Eta2p1", vecP_HLTObj_Mu20.Pt(), weight );
+          histSet_->Fill( "eta_Mu20_or_Mu45Eta2p1", vecP_HLTObj_Mu20.Eta(), weight );
+          histSet_->Fill( "phi_Mu20_or_Mu45Eta2p1", vecP_HLTObj_Mu20.Phi(), weight );
+        }
+        else {
+          histSet_->Fill( "pt_Mu20_or_Mu45Eta2p1", vecP_HLTObj_Mu45Eta2p1.Pt(), weight );
+          histSet_->Fill( "eta_Mu20_or_Mu45Eta2p1", vecP_HLTObj_Mu45Eta2p1.Eta(), weight );
+          histSet_->Fill( "phi_Mu20_or_Mu45Eta2p1", vecP_HLTObj_Mu45Eta2p1.Phi(), weight );
+        }
+      }
+
+      if( isMatched_Mu20 || isMatched_Mu50 ) {
+        if( isMatched_Mu20 ) {
+          histSet_->Fill( "pt_Mu20_or_Mu50", vecP_HLTObj_Mu20.Pt(), weight );
+          histSet_->Fill( "eta_Mu20_or_Mu50", vecP_HLTObj_Mu20.Eta(), weight );
+          histSet_->Fill( "phi_Mu20_or_Mu50", vecP_HLTObj_Mu20.Phi(), weight );
+        }
+        else {
+          histSet_->Fill( "pt_Mu20_or_Mu50", vecP_HLTObj_Mu50.Pt(), weight );
+          histSet_->Fill( "eta_Mu20_or_Mu50", vecP_HLTObj_Mu50.Eta(), weight );
+          histSet_->Fill( "phi_Mu20_or_Mu50", vecP_HLTObj_Mu50.Phi(), weight );
+        }
+      }
+
+
     }
   }
 
@@ -110,6 +143,9 @@ private:
   void Init() {
     histSet_ = new HistSet(type_);
 
+    histSet_->Register("nEvent_Mu50_Mu20",    2, 0, 2);
+    histSet_->Register("nEvent_IsoMu24_Mu20", 2, 0, 2);
+
     histSet_->Register("pt",  10000, 0, 10000);
     histSet_->Register("eta", 60, -3, 3);
     histSet_->Register("phi", 80, -4, 4);
@@ -118,8 +154,13 @@ private:
     histSet_->Register("eta_Mu20Fired", 60, -3, 3);
     histSet_->Register("phi_Mu20Fired", 80, -4, 4);
 
-    histSet_->Register("nEvent_Mu50_Mu20",    2, 0, 2);
-    histSet_->Register("nEvent_IsoMu24_Mu20", 2, 0, 2);
+    histSet_->Register("pt_Mu20_or_Mu45Eta2p1",  10000, 0, 10000);
+    histSet_->Register("eta_Mu20_or_Mu45Eta2p1", 60, -3, 3);
+    histSet_->Register("phi_Mu20_or_Mu45Eta2p1", 80, -4, 4);
+
+    histSet_->Register("pt_Mu20_or_Mu50",  10000, 0, 10000);
+    histSet_->Register("eta_Mu20_or_Mu50", 60, -3, 3);
+    histSet_->Register("phi_Mu20_or_Mu50", 80, -4, 4);
   }
 
   Bool_t IsTrigMatchedByDR(const TLorentzVector& vecP, NtupleHandle *ntuple, TString HLT, TLorentzVector &vecP_HLTObj)
