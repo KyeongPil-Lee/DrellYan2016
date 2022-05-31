@@ -89,6 +89,12 @@ public:
         histSet_->Fill( "pt", vecP_HLTObj.Pt(), weight );
         histSet_->Fill( "eta", vecP_HLTObj.Eta(), weight );
         histSet_->Fill( "phi", vecP_HLTObj.Phi(), weight );
+
+        if( isMu20 ) {
+          histSet_->Fill( "pt_Mu20Fired", vecP_HLTObj.Pt(), weight );
+          histSet_->Fill( "eta_Mu20Fired", vecP_HLTObj.Eta(), weight );
+          histSet_->Fill( "phi_Mu20Fired", vecP_HLTObj.Phi(), weight );
+        }
       }
     }
   }
@@ -107,6 +113,10 @@ private:
     histSet_->Register("pt",  10000, 0, 10000);
     histSet_->Register("eta", 60, -3, 3);
     histSet_->Register("phi", 80, -4, 4);
+
+    histSet_->Register("pt_Mu20Fired",  10000, 0, 10000);
+    histSet_->Register("eta_Mu20Fired", 60, -3, 3);
+    histSet_->Register("phi_Mu20Fired", 80, -4, 4);
 
     histSet_->Register("nEvent_Mu50_Mu20",    2, 0, 2);
     histSet_->Register("nEvent_IsoMu24_Mu20", 2, 0, 2);
